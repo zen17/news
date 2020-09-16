@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
-import TopNewsHomePage from "./top-news/pages/top-news-home-page";
+import TopNewsWrapperPage from "./top-news/pages/top-news-wrapper-page/top-news-wrapper-page";
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-      <TopNewsHomePage/>
+      <BrowserRouter>
+        <TopNewsWrapperPage/>
+      </BrowserRouter>
   );
 }
 

@@ -1,16 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function HorizontalNavBarComponent(props) {
-    const links = props.links;
-    let listItems = [];
-    if (links) {
-        listItems = links.map(({name, route}) =>
-            <li key={route}><a className="nav-link">{name}</a></li>
-        );
-    }
+
+    const listItems = props.links.map(({name, route, index}) =>
+        <Link key={index} to={route}>
+            {name}
+        </Link>
+    );
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="#">News</a>
+            <Link to="/">
+                News
+            </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

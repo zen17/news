@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TopNewsCardListComponent
     from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
 import {useDispatch, useSelector} from "react-redux";
-import {loadedTopNews} from "../../../redux/actions/news-actions";
+import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
 
 function TopNewsHomePage(props) {
     const links = [{name: "Top News", route: "/"},
@@ -18,7 +18,7 @@ function TopNewsHomePage(props) {
             .then(data => data.json())
             .then(data => {
                 console.log('GET', data)
-                dispatch(loadedTopNews(data.articles));
+                dispatch(loadedTopArticlesAction(data.articles));
                 setLoading(false);
             }).catch(e => console.log(e));
     }, []);

@@ -1,6 +1,8 @@
-import newsReducer from "./news-reducer";
+import articlesReducer from "./articles-reducer";
 import {combineReducers} from "redux";
+import selectedArticleReducer from "./selected-article-reducer";
 const reducers = combineReducers({
-    topNews: newsReducer
+    articles: articlesReducer,
+    selectedArticle: selectedArticleReducer
 })
 export default reducers;

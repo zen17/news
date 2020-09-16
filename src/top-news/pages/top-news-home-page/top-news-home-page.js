@@ -10,7 +10,7 @@ function TopNewsHomePage(props) {
         {name: "Search", route: "/search"}]
 
     const [loading, setLoading] = useState(false);
-    const topNews = useSelector(state => state.topNews);
+    const articles = useSelector(state => state.articles);
     const dispatch = useDispatch();
     useEffect(() => {
         setLoading(true)
@@ -25,7 +25,7 @@ function TopNewsHomePage(props) {
 
     return (
         <div className="container-fluid">
-        <TopNewsCardListComponent news={topNews}/>
+        <TopNewsCardListComponent articles={articles}/>
         </div>
     )
 }

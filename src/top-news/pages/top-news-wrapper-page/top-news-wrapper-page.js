@@ -16,9 +16,8 @@ function TopNewsWrapperPage(props) {
     return (
         <div >
             <HorizontalNavBarComponent links={links}/>
-            <Route path="/" exact component={TopNewsHomePage}/>
+            <Route path="/" component={TopNewsHomePage}/>
             <Route path="/categories" exact component={TopNewsCategoriesPage}/>
-            <Route path="/article" exact component={TopNewsDetailComponent}/>
         </div>
     )
 }

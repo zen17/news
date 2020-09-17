@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
 import {Route} from "react-router-dom";
 import TopNewsDetailComponent from "../../../common/components/top-news-detail-component/top-news-detail-component";
+import {API_KEY} from "../../../config/constants";
 
 function TopNewsHomePage(props) {
 
@@ -13,7 +14,7 @@ function TopNewsHomePage(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         setLoading(true)
-        fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=ac650ec4d1d34bd3b64420a5667b45a4')
+        fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`)
             .then(data => data.json())
             .then(data => {
                 console.log('GET123', data)
@@ -24,12 +25,12 @@ function TopNewsHomePage(props) {
 
     return (
         <div className="container-fluid">
-                <Route  path='/' exact >
-                    <TopNewsCardListComponent  articles={articles}/>
-                </Route>
-                <Route path='/article' exact >
-                  <TopNewsDetailComponent/>
-                </Route>
+            <Route path='/' exact>
+                <TopNewsCardListComponent articles={articles}/>
+            </Route>
+            <Route path='/article' exact>
+                <TopNewsDetailComponent/>
+            </Route>
         </div>
     )
 }

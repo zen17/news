@@ -3,6 +3,7 @@ import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-act
 import {useDispatch, connect} from "react-redux";
 import ListOfCategoryListsComponent
     from "../../components/list-of-category-lists-component/list-of-category-lists-component";
+import {API_KEY} from "../../../config/constants";
 
 function TopNewsCategoriesPage(props) {
 
@@ -17,7 +18,7 @@ function TopNewsCategoriesPage(props) {
 
     useEffect(() => {
         categories.forEach(category => {
-            fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category.value}&apiKey=ac650ec4d1d34bd3b64420a5667b45a4`)
+            fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category.value}&apiKey=${API_KEY}`)
                 .then(data => data.json())
                 .then(data => {
                     console.log(data)

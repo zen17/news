@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {GB_LANGUAGE, US_LANGUAGE} from "../../../config/constants";
 
 function HorizontalNavBarComponent(props) {
 
@@ -21,7 +22,9 @@ function HorizontalNavBarComponent(props) {
                 <ul className="navbar-nav mr-auto">
                     {listItems}
                 </ul>
-                <span className="navbar-text">Navbar text with an inline element</span>
+                <span className="navbar-text">
+
+                </span>
             </div>
         </nav>
     );

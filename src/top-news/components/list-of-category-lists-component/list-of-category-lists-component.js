@@ -3,9 +3,12 @@ import {connect} from "react-redux";
 import CategoryListsComponent from "../category-list-component/category-list-component";
 
 function ListOfCategoryListsComponent(props) {
-    console.log('LIST 99999', props)
-    const listOfCategoryLists = props.listOfCategories?.map(category => <CategoryListsComponent articles={props.categoryArticles[category.value]}/>)
-
+    const listOfCategoryLists = props.listOfCategories?.map(category =>
+        <div>
+            <h5>{category.name}</h5>
+        <CategoryListsComponent articles={props.categoryArticles[category.value]}/>
+        </div>
+    )
     return (
         <div>
             {listOfCategoryLists}

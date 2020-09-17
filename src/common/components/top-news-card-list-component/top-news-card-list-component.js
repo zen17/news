@@ -6,7 +6,7 @@ const TopNewsCardListComponent = (props) => {
     return (
             <div className="row justify-content-center">
                 {props.articles.map((article, index) => (
-                    <div key={index} className="col-md-4 col-lg-3 mt-2">
+                    <div key={index} className="col-md-4 col-lg-3 mt-4">
                         <TopNewsCardComponent  article={article}/>
                     </div>
                 ))}

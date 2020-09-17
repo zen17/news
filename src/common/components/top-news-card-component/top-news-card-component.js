@@ -8,13 +8,12 @@ const TopNewsCardComponent = (props) => {
     const history = useHistory()
     const dispatch = useDispatch();
     const openArticleDetailView = () => {
-        console.log('CARD11', props.article)
     dispatch(selectedArticleAction(props.article));
         history.push('/article')
     }
     return (
         <div className="card">
-            <img src={props.article.urlToImage} className="card-img-top" alt="..."/>
+            <img src={props.article.urlToImage} className="card-img-top image-size" alt="..."/>
             <div className="card-body">
                 <h5 className="card-title">{props.article.title}</h5>
                 <p className="card-text">{props.article.description}</p>

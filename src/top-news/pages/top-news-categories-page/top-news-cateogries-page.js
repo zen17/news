@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
 import {useDispatch, useSelector, connect} from "react-redux";
 import ItemsCarousel from 'react-items-carousel';
+import TopNewsCardComponent from "../../../common/components/top-news-card-component/top-news-card-component";
 
 function TopNewsCategoriesPage(props) {
 
@@ -27,10 +28,8 @@ function TopNewsCategoriesPage(props) {
         });
     }, []);
 
-    const getItemsForCarousel = props.categoryArticles["sport"]?.map(article => <div style={{height: 200, background: '#EEE'}}>{article.title}</div>);
-    console.log('AFTER',getItemsForCarousel)
-
-
+    const getItemsForCarousel = props.categoryArticles["sport"]?.map(article => <TopNewsCardComponent
+        article={article}/>);
 
     return (
         <div style={{padding: `0 ${chevronWidth}px`}}>
@@ -57,8 +56,8 @@ function TopNewsCategoriesPage(props) {
 
 function mapStateToProps(state, ownProps) {
     console.log('MAPP', state)
-    const  categoryArticles  = state.categoryArticles
-    return { categoryArticles: categoryArticles }
+    const categoryArticles = state.categoryArticles
+    return {categoryArticles: categoryArticles}
 }
 
-export default connect(mapStateToProps,null)(TopNewsCategoriesPage);
+export default connect(mapStateToProps, null)(TopNewsCategoriesPage);

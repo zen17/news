@@ -3,6 +3,8 @@ import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-act
 import {useDispatch, useSelector, connect} from "react-redux";
 import ItemsCarousel from 'react-items-carousel';
 import TopNewsCardComponent from "../../../common/components/top-news-card-component/top-news-card-component";
+import ListOfCategoryListsComponent
+    from "../../components/list-of-category-lists-component/list-of-category-lists-component";
 
 function TopNewsCategoriesPage(props) {
 
@@ -28,28 +30,9 @@ function TopNewsCategoriesPage(props) {
         });
     }, []);
 
-    const getItemsForCarousel = props.categoryArticles["sport"]?.map(article => <TopNewsCardComponent
-        article={article}/>);
 
     return (
-        <div style={{padding: `0 ${chevronWidth}px`}}>
-            <h1>CATEGORIES</h1>
-            <ItemsCarousel
-                requestToChangeActive={setActiveItemIndex}
-                activeItemIndex={activeItemIndex}
-                numberOfCards={5}
-                gutter={20}
-                leftChevron={<button>{'<'}</button>}
-                rightChevron={<button>{'>'}</button>}
-                outsideChevron
-                chevronWidth={chevronWidth}
-            >
-                {getItemsForCarousel}
-
-
-            </ItemsCarousel>
-
-        </div>
+        <ListOfCategoryListsComponent listOfCategories={categories} />
     )
 }
 

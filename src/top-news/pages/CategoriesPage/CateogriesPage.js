@@ -1,13 +1,10 @@
 import React, {useEffect} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
 import {useDispatch, connect} from "react-redux";
-import ListOfCategoryListsComponent
-    from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import {API_KEY} from "../../../config/constants";
 import {Route} from "react-router-dom";
-import CardListComponent
-    from "../../../common/components/CardListComponent/CardListComponent";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
+import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 
 function CategoriesPage(props) {
 
@@ -35,7 +32,7 @@ function CategoriesPage(props) {
     return (
         <div className="container-fluid">
             <Route path='/categories' exact>
-                <ListOfCategoryListsComponent listOfCategories={categories}/>
+                <CategoryCarouselListComponent listOfCategories={categories}/>
             </Route>
             <Route path='/categories/article' exact>
                 <ArticleDetailComponent  />

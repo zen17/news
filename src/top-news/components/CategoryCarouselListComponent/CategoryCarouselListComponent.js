@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import CategoryCarouselComponent from "../CategoryCarouselComponent/CategoryCarouselComponent";
 
-function CategoryCarouselListComponent(props) {
+ function CategoryCarouselListComponent(props) {
     const listOfCategoryLists = props.listOfCategories?.map(category =>
         <div>
             <div className='row m-5'>

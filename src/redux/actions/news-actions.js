@@ -2,7 +2,7 @@ import {
     SELECTED_ARTICLE,
     LOAD_TOP_ARTICLES,
     LOAD_TOP_ARTICLES_BY_CATEGORY,
-    CHANGED_LANGUAGE
+    SELECTED_COUNTRY
 } from "./news-actions-types";
 
 export const selectedArticleAction = (payload) => {
@@ -26,9 +26,9 @@ export const loadedTopArticlesByCategoryAction = (payload) => {
     }
 }
 
-export const changedLanguageAction = (payload) => {
+export const selectedCountryAction = (payload) => {
     return {
-        type: CHANGED_LANGUAGE,
+        type: SELECTED_COUNTRY,
         payload: payload
     }
 }

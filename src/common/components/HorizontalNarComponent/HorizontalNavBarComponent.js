@@ -1,14 +1,23 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {GB_LANGUAGE, US_LANGUAGE} from "../../../config/constants";
+import RadioButtonsComponent from "../RadioButtonsComponent/RadioButtonsComponent";
+import {useDispatch} from "react-redux";
+import {selectedCountryAction} from "../../../redux/actions/news-actions";
 
 function HorizontalNavBarComponent(props) {
 
+    const radioButtonsInit = [{value: 'GB', option: 'GB'}, {value: 'US', option: 'US'}]
     const listItems = props.links.map(({name, route, index}) =>
         <Link key={index} to={route}>
             {name}
         </Link>
     );
+    const dispatch = useDispatch();
+    const onRadioButtonsChange = (value) => {
+        dispatch(selectedCountryAction(value))
+        console.log(value)
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/">
@@ -23,7 +32,10 @@ function HorizontalNavBarComponent(props) {
                     {listItems}
                 </ul>
                 <span className="navbar-text">
-
+                         <RadioButtonsComponent
+                             selectedValue={props.selectedCountry}
+                             onRadioButtonsChange={onRadioButtonsChange}
+                             values={radioButtonsInit} name="country"/>
                 </span>
             </div>
         </nav>

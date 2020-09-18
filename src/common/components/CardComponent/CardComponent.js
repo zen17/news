@@ -16,6 +16,8 @@ const CardComponent = (props) => {
             history.push(`${location.pathname}/article`)
     }
 
+  //  const =
+
     const resizeOnHoverClass = props.showHoverAnimation ? 'card card-resize' : 'card';
     return (
         <div className={resizeOnHoverClass}>

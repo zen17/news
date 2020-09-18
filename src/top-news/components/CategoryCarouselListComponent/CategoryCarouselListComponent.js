@@ -20,15 +20,16 @@ function CategoryCarouselListComponent(props) {
             });
     }
 
-    const listOfCategoryLists = props.listOfCategories?.map((category, index) =>
-        <div>
+    const listOfCategoryLists = props.listOfCategories?.map((category, index) => {
+        return (<div>
             <div className='row m-4'>
-                <h3 className='mt-3 mb-2 clickableHeader'
-                    onClick={() => handleClickOnCategory(category.name)}>{category.name}</h3>
+                <h3 className='mt-3 mb-2 clickableHeader'>
+                    <a className='clickableHeader'
+                       onClick={() => handleClickOnCategory(category.name)}>{category.name}</a></h3>
             </div>
             <CategoryCarouselComponent key={index} articles={props.categoryArticles[category.value]}/>
-        </div>
-    )
+        </div>)
+    })
     return (
         <div>
             {listOfCategoryLists}

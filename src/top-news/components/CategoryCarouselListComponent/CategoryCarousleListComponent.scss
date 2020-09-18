@@ -1,7 +1,8 @@
 .clickableHeader {
-  pointer-events: visible;
+  cursor: pointer;
 }
 
 .clickableHeader:hover{
   border-bottom: 2px cyan;
+  cursor: pointer;
 }

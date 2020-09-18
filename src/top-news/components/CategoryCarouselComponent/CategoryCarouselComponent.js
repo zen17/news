@@ -32,7 +32,7 @@ function CategoryCarouselComponent(props) {
     }, []);
 
 
-const articles = props.articles?.map(article => <CardComponent article={article}/>);
+const articles = props.articles?.map((article,index) => <CardComponent ket={index} article={article}/>);
 return (
     <div style={{padding: `0 ${chevronWidth}px`}}>
         <ItemsCarousel

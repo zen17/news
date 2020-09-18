@@ -1,10 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
-import {useDispatch, connect} from "react-redux";
+import {useDispatch, connect, useSelector} from "react-redux";
 import {API_KEY} from "../../../config/constants";
 import {Route} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
+import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
 
 function CategoriesPage(props) {
 
@@ -15,6 +16,7 @@ function CategoriesPage(props) {
         {name: "Sport", value: "sport"},
         {name: "Technology", value: "echtnology"}];
 
+    const articles = useSelector(state => state.articles);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,7 +36,13 @@ function CategoriesPage(props) {
             <Route path='/categories' exact>
                 <CategoryCarouselListComponent listOfCategories={categories}/>
             </Route>
+            <Route path='/categories/articles' exact>
+                <CardListComponent articles={articles}/>
+            </Route>
             <Route path='/categories/article' exact>
+                <ArticleDetailComponent  />
+            </Route>
+            <Route path='/categories/articles/article' exact>
                 <ArticleDetailComponent  />
             </Route>
         </div>

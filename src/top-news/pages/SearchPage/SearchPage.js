@@ -36,7 +36,6 @@ function SearchPage(props) {
                 setArticles(data.articles)
                 setLoading(false);
             }).catch(e => {
-            console.log(e)
             setArticles([])
         })
 

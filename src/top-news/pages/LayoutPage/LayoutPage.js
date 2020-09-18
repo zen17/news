@@ -1,15 +1,15 @@
 import React from 'react';
 import HorizontalNavBarComponent
-    from "../../../common/components/horizontal-navigation-bar-component/horizontal-navigation-bar-component";
+    from "../../../common/components/HorizontalNarComponent/HorizontalNavBarComponent";
 import {Route, Switch} from 'react-router-dom'
-import TopNewsHomePage from "../top-news-home-page/top-news-home-page";
-import TopNewsCategoriesPage from "../CategoriesPage/top-news-cateogries-page";
-import TopNewsDetailComponent from "../../../common/components/top-news-detail-component/top-news-detail-component";
-import TopNewsCardListComponent
-    from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
+import HomePage from "../HomePage/HomePage";
+import TopNewsCategoriesPage from "../CategoriesPage/CateogriesPage";
+import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
+import CardListComponent
+    from "../../../common/components/CardListComponent/CardListComponent";
 import SearchPage from "../SearchPage/SearchPage";
 
-function TopNewsWrapperPage(props) {
+function LayoutPage(props) {
     const links = [{name: "Home", route: "/"},
         {name: "Categories", route: "categories"},
         {name: "Search", route: "search"}];
@@ -20,10 +20,10 @@ function TopNewsWrapperPage(props) {
             <Switch>
                 <Route path="/categories" component={TopNewsCategoriesPage}/>
                 <Route path="/search" component={SearchPage}/>
-                <Route path="/"  component={TopNewsHomePage}/>
+                <Route path="/"  component={HomePage}/>
             </Switch>
         </div>
     )
 }
 
-export default TopNewsWrapperPage
+export default LayoutPage

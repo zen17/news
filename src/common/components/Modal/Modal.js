@@ -1,7 +1,7 @@
 import React from "react";
-import "./modal.scss"
+import "./Modal.scss"
  function Modal ({ handleClose, show, children }){
-    const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+    const showHideClassName = show ? 'Modal display-block' : 'Modal display-none';
 
     return (
         <div className={showHideClassName}>

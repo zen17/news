@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import TopNewsCardListComponent
-    from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
+import CardListComponent
+    from "../../../common/components/CardListComponent/CardListComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
 import {Route} from "react-router-dom";
-import TopNewsDetailComponent from "../../../common/components/top-news-detail-component/top-news-detail-component";
+import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {API_KEY} from "../../../config/constants";
 
-function TopNewsHomePage(props) {
+function HomePage(props) {
     console.log('HOMEPAGE PROPS',props)
     const [loading, setLoading] = useState(false);
     const articles = useSelector(state => state.articles);
@@ -26,13 +26,13 @@ function TopNewsHomePage(props) {
     return (
         <div className="container-fluid">
             <Route path='/' exact>
-                <TopNewsCardListComponent articles={articles}/>
+                <CardListComponent articles={articles}/>
             </Route>
             <Route path='/article' exact>
-                <TopNewsDetailComponent  />
+                <ArticleDetailComponent  />
             </Route>
         </div>
     )
 }
 
-export default TopNewsHomePage
+export default HomePage

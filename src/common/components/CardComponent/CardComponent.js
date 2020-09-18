@@ -1,10 +1,10 @@
 import React from 'react';
-import "./top-news-card-component.scss"
+import "./CardComponent.scss"
 import {Link, useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {selectedArticleAction} from "../../../redux/actions/news-actions";
 
-const TopNewsCardComponent = (props) => {
+const CardComponent = (props) => {
     const history = useHistory()
     const dispatch = useDispatch();
     const location = useLocation();
@@ -28,4 +28,4 @@ const TopNewsCardComponent = (props) => {
         </div>
     );
 }
-export default TopNewsCardComponent
+export default CardComponent

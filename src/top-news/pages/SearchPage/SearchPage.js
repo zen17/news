@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import TopNewsCardListComponent
-    from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
+import CardListComponent
+    from "../../../common/components/CardListComponent/CardListComponent";
 import {API_KEY} from "../../../config/constants";
 
 function SearchPage(props) {
@@ -39,7 +39,7 @@ function SearchPage(props) {
                     <input type="text" name="search-bar" onChange={handleChangeInput}/>
                 </label>
             </form>
-                <TopNewsCardListComponent articles={articles} />
+                <CardListComponent articles={articles} />
         </div>
     )
 }

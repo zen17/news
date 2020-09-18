@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import ItemsCarousel from "react-items-carousel";
-import TopNewsCardComponent from "../../../common/components/top-news-card-component/top-news-card-component";
+import CardComponent from "../../../common/components/CardComponent/CardComponent";
 
-function CategoryListsComponent(props) {
+function CategoryCarouselComponent(props) {
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [numberOfCards, setNumberOfCards] = useState(5);
@@ -32,7 +32,7 @@ function CategoryListsComponent(props) {
     }, []);
 
 
-const articles = props.articles?.map(article => <TopNewsCardComponent  article={article}/>);
+const articles = props.articles?.map(article => <CardComponent article={article}/>);
 return (
     <div style={{padding: `0 ${chevronWidth}px`}}>
         <ItemsCarousel
@@ -52,4 +52,4 @@ return (
 }
 
 
-export default CategoryListsComponent;
+export default CategoryCarouselComponent;

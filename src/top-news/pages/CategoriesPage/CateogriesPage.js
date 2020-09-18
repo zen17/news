@@ -5,9 +5,9 @@ import ListOfCategoryListsComponent
     from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import {API_KEY} from "../../../config/constants";
 import {Route} from "react-router-dom";
-import TopNewsCardListComponent
-    from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
-import TopNewsDetailComponent from "../../../common/components/top-news-detail-component/top-news-detail-component";
+import CardListComponent
+    from "../../../common/components/CardListComponent/CardListComponent";
+import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 
 function CategoriesPage(props) {
 
@@ -38,7 +38,7 @@ function CategoriesPage(props) {
                 <ListOfCategoryListsComponent listOfCategories={categories}/>
             </Route>
             <Route path='/categories/article' exact>
-                <TopNewsDetailComponent  />
+                <ArticleDetailComponent  />
             </Route>
         </div>
 )

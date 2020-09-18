@@ -2,10 +2,14 @@ import React, {useEffect} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
 import {useDispatch, connect} from "react-redux";
 import ListOfCategoryListsComponent
-    from "../../components/list-of-category-lists-component/list-of-category-lists-component";
+    from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import {API_KEY} from "../../../config/constants";
+import {Route} from "react-router-dom";
+import TopNewsCardListComponent
+    from "../../../common/components/top-news-card-list-component/top-news-card-list-component";
+import TopNewsDetailComponent from "../../../common/components/top-news-detail-component/top-news-detail-component";
 
-function TopNewsCategoriesPage(props) {
+function CategoriesPage(props) {
 
     const categories = [{name: "Entertainment", value: "entertainment"},
         {name: "General", value: "general"},
@@ -21,7 +25,7 @@ function TopNewsCategoriesPage(props) {
             fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category.value}&apiKey=${API_KEY}`)
                 .then(data => data.json())
                 .then(data => {
-                    console.log(data)
+                    console.log('CATEGORY PAGE LOADED')
                     dispatch(loadedTopArticlesByCategoryAction({category: category, articles: data.articles}));
                 });
         });
@@ -29,8 +33,15 @@ function TopNewsCategoriesPage(props) {
 
 
     return (
-        <ListOfCategoryListsComponent listOfCategories={categories} />
-    )
+        <div className="container-fluid">
+            <Route path='/categories' exact>
+                <ListOfCategoryListsComponent listOfCategories={categories}/>
+            </Route>
+            <Route path='/categories/article' exact>
+                <TopNewsDetailComponent  />
+            </Route>
+        </div>
+)
 }
 
 
@@ -39,4 +50,4 @@ function mapStateToProps(state, ownProps) {
     return {categoryArticles: categoryArticles}
 }
 
-export default connect(mapStateToProps, null)(TopNewsCategoriesPage);
+export default connect(mapStateToProps, null)(CategoriesPage);

@@ -1,19 +1,22 @@
 import React from 'react';
 import "./top-news-card-component.scss"
-import {useHistory} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {selectedArticleAction} from "../../../redux/actions/news-actions";
 
 const TopNewsCardComponent = (props) => {
     const history = useHistory()
     const dispatch = useDispatch();
+    const location = useLocation();
     const openArticleDetailView = () => {
         dispatch(selectedArticleAction(props.article));
-        history.push('/article')
+        if (location.pathname === '/')
+            history.push(`${location.pathname}article`)
+        else
+            history.push(`${location.pathname}/article`)
     }
 
     const resizeOnHoverClass = props.showHoverAnimation ? 'card card-resize' : 'card';
-    console.log('CLASSA', resizeOnHoverClass)
     return (
         <div className={resizeOnHoverClass}>
             <img src={props.article.urlToImage} className="card-img-top image-size" alt="..."/>

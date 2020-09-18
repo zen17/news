@@ -8,7 +8,7 @@ import TopNewsDetailComponent from "../../../common/components/top-news-detail-c
 import {API_KEY} from "../../../config/constants";
 
 function TopNewsHomePage(props) {
-
+    console.log('HOMEPAGE PROPS',props)
     const [loading, setLoading] = useState(false);
     const articles = useSelector(state => state.articles);
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function TopNewsHomePage(props) {
         fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`)
             .then(data => data.json())
             .then(data => {
-                console.log('GET123', data)
+                console.log('HOME PAGE LOADED ', data)
                 dispatch(loadedTopArticlesAction(data.articles));
                 setLoading(false);
             }).catch(e => console.log(e));
@@ -29,7 +29,7 @@ function TopNewsHomePage(props) {
                 <TopNewsCardListComponent articles={articles}/>
             </Route>
             <Route path='/article' exact>
-                <TopNewsDetailComponent/>
+                <TopNewsDetailComponent  />
             </Route>
         </div>
     )

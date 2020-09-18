@@ -32,7 +32,7 @@ function CategoryListsComponent(props) {
     }, []);
 
 
-const articles = props.articles?.map(article => <TopNewsCardComponent article={article}/>);
+const articles = props.articles?.map(article => <TopNewsCardComponent  article={article}/>);
 return (
     <div style={{padding: `0 ${chevronWidth}px`}}>
         <ItemsCarousel

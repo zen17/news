@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {GB_LANGUAGE, US_LANGUAGE} from "../../../config/constants";
 import RadioButtonsComponent from "../RadioButtonsComponent/RadioButtonsComponent";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectedCountryAction} from "../../../redux/actions/news-actions";
 
 function HorizontalNavBarComponent(props) {
@@ -13,6 +13,8 @@ function HorizontalNavBarComponent(props) {
             {name}
         </Link>
     );
+    const selectedArticle = useSelector(state => state.selectedArticle);
+    const disabledButtons = selectedArticle ? 'navbar-text disabled' : 'navbar-text';
     const dispatch = useDispatch();
     const onRadioButtonsChange = (value) => {
         dispatch(selectedCountryAction(value))
@@ -31,8 +33,9 @@ function HorizontalNavBarComponent(props) {
                 <ul className="navbar-nav mr-auto">
                     {listItems}
                 </ul>
-                <span className="navbar-text">
+                <span className={disabledButtons}>
                          <RadioButtonsComponent
+                             className={disabledButtons}
                              selectedValue={props.selectedCountry}
                              onRadioButtonsChange={onRadioButtonsChange}
                              values={radioButtonsInit} name="country"/>

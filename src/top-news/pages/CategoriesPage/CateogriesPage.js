@@ -17,18 +17,19 @@ function CategoriesPage(props) {
         {name: "Technology", value: "echtnology"}];
 
     const articles = useSelector(state => state.articles);
+    const selectedCountry = useSelector(state => state.selectedCountry);
     const dispatch = useDispatch();
 
     useEffect(() => {
         categories.forEach(category => {
-            fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category.value}&apiKey=${API_KEY}`)
+            fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&category=${category.value}&apiKey=${API_KEY}`)
                 .then(data => data.json())
                 .then(data => {
                     console.log('CATEGORY PAGE LOADED')
                     dispatch(loadedTopArticlesByCategoryAction({category: category, articles: data.articles}));
                 });
         });
-    }, []);
+    }, [selectedCountry]);
 
 
     return (

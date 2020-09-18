@@ -11,17 +11,18 @@ function HomePage(props) {
     console.log('HOMEPAGE PROPS',props)
     const [loading, setLoading] = useState(false);
     const articles = useSelector(state => state.articles);
+    const selectedCountry = useSelector(state => state.selectedCountry);
     const dispatch = useDispatch();
     useEffect(() => {
         setLoading(true)
-        fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`)
+        fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&apiKey=${API_KEY}`)
             .then(data => data.json())
             .then(data => {
                 console.log('HOME PAGE LOADED ', data)
                 dispatch(loadedTopArticlesAction(data.articles));
                 setLoading(false);
             }).catch(e => console.log(e));
-    }, []);
+    }, [selectedCountry]);
 
     return (
         <div className="container-fluid">

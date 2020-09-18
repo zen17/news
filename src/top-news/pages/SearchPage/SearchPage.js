@@ -6,14 +6,16 @@ import {Route} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {useSelector} from "react-redux";
 
 function SearchPage(props) {
 
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
-    const [query, setQuery] = useState([]);
+    const [query, setQuery] = useState('');
 
     const searchInput = React.useRef(null);
+    const selectedCountry = useSelector(state => state.selectedCountry);
 
     const initialSubject = () => {
         return fromEvent(searchInput.current, 'input')
@@ -29,17 +31,18 @@ function SearchPage(props) {
     useEffect(() => {
         setLoading(true)
         initialSubject();
-        fetch(`https://newsapi.org/v2/top-headlines?q=${query}&apiKey=${API_KEY}`)
+        if (query !== '')
+        fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&q=${query}&apiKey=${API_KEY}`)
             .then(data => data.json())
             .then(data => {
                 console.log('SEARCH PAGE LOADED', data)
                 setArticles(data.articles)
                 setLoading(false);
             }).catch(e => {
-            setArticles([])
+            setArticles([selectedCountry])
         })
 
-    }, [query]);
+    }, [query,selectedCountry]);
 
 
     const handleChangeInput = (inputValue) => {
@@ -51,7 +54,7 @@ function SearchPage(props) {
             <Route path='/search' exact>
                 <form>
                     <label>
-                        Name:
+                        Search News
                         <input ref={searchInput} type="text" name="search-bar"/>
                     </label>
                 </form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, useDispatch} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import CategoryCarouselComponent from "../CategoryCarouselComponent/CategoryCarouselComponent";
 import {API_KEY} from "../../../config/constants";
 import {loadedTopArticlesAction, selectedArticlesCategoryAction} from "../../../redux/actions/news-actions";
@@ -9,6 +9,7 @@ function CategoryCarouselListComponent(props) {
     const dispatch = useDispatch();
     const history = useHistory()
     const location = useLocation();
+    const selectedArticle = useSelector(state => state.selectedArticle);
 
 
     const handleClickOnCategory = (categoryName) => {

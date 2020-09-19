@@ -1,16 +1,23 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {selectedArticleAction} from "../../../redux/actions/news-actions";
+import {useDispatch} from "react-redux";
 
 const ArticleDetailComponent = (props) => {
-    const selectedArticle = useSelector(state => state.selectedArticle);
     const dispatch = useDispatch();
     const history = useHistory()
     const goBack = () => {
         history.goBack()
     }
+
+    const handleClickOnBackBtn = () => {
+        props.onBackBtnClick();
+    }
+
     useEffect(() => {
+        if(!props.selectedArticle){
+            goBack();
+        }
         return () => {
             dispatch(selectedArticleAction(null))
         }
@@ -18,10 +25,10 @@ const ArticleDetailComponent = (props) => {
 
     return (
         <div>
-            <a className="nav-link" onClick={goBack}> Back </a>
-            <h2>{selectedArticle?.title}</h2>
-            <img src={selectedArticle?.urlToImage} className="card-img-top" alt="..."/>
-            <p className="card-text">{selectedArticle?.content}</p>
+            <a className="nav-link" onClick={handleClickOnBackBtn}> Back </a>
+            <h2>{props.selectedArticle?.title}</h2>
+            <img src={props.selectedArticle?.urlToImage} className="card-img-top" alt="..."/>
+            <p className="card-text">{props.selectedArticle?.content}</p>
         </div>
     );
 }

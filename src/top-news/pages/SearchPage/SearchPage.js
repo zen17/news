@@ -2,7 +2,7 @@ import React, {useEffect, useState, Fragment} from 'react';
 import CardListComponent
     from "../../../common/components/CardListComponent/CardListComponent";
 import {API_KEY} from "../../../config/constants";
-import {Route} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
@@ -13,9 +13,10 @@ function SearchPage(props) {
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
     const [query, setQuery] = useState('');
-
+    const history = useHistory()
     const searchInput = React.useRef(null);
     const selectedCountry = useSelector(state => state.selectedCountry);
+    const selectedArticle = useSelector(state => state.selectedArticle);
 
     const initialSubject = () => {
         return fromEvent(searchInput.current, 'input')
@@ -28,6 +29,17 @@ function SearchPage(props) {
             );
     }
 
+    const goBack = () => {
+        history.goBack()
+    }
+
+    const handleChangeInput = (inputValue) => {
+        setQuery(inputValue)
+    }
+
+    const closeArticleDetailComponent = () => {
+        goBack();
+    }
     useEffect(() => {
         setLoading(true)
         initialSubject();
@@ -44,24 +56,27 @@ function SearchPage(props) {
 
     }, [query,selectedCountry]);
 
-
-    const handleChangeInput = (inputValue) => {
-        setQuery(inputValue)
-    }
-
     return (
         <Fragment>
             <Route path='/search' exact>
-                <form>
-                    <label>
-                        Search News
-                        <input ref={searchInput} type="text" name="search-bar"/>
-                    </label>
-                </form>
+                <div className='row justify-content-center mt-5' >
+                    <form>
+                        <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                            <div className="input-group">
+                                <input type="search" ref={searchInput} placeholder='Search news...'
+                                        className="form-control border-0 bg-light"/>
+
+                            </div>
+                        </div>
+                        {/*<label>*/}
+                        {/*    <input className='form-control' ref={searchInput} placeholder='Search news...' type="text" name="search-bar"/>*/}
+                        {/*</label>*/}
+                    </form>
+                </div>
                 <CardListComponent articles={articles}/>
             </Route>
             <Route path='/search/article' exact>
-                <ArticleDetailComponent/>
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle} />
             </Route>
         </Fragment>
     )

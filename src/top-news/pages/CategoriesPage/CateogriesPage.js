@@ -2,7 +2,7 @@ import React, {useEffect, useState, Fragment} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
 import {useDispatch, connect, useSelector} from "react-redux";
 import {API_KEY, GB_COUNTRY} from "../../../config/constants";
-import {Route} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
@@ -15,15 +15,22 @@ function CategoriesPage(props) {
         {name: "Science", value: "science"},
         {name: "Sport", value: "sport"},
         {name: "Technology", value: "technology"}];
-
-
-
     const articles = useSelector(state => state.articles);
     const selectedCountry = useSelector(state => state.selectedCountry);
     const categoryArticles = useSelector(state => state.categoryArticles);
+    const selectedArticle = useSelector(state => state.selectedArticle);
     const selectedArticlesCategory = useSelector(state => state.selectedArticlesCategory);
     const dispatch = useDispatch();
     const countryName = selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'
+    const history = useHistory()
+
+    const goBack = () => {
+        history.goBack()
+    }
+
+    const closeArticleDetailComponent = () => {
+        goBack();
+    }
 
     useEffect(() => {
         categories.forEach(category => {
@@ -47,10 +54,10 @@ function CategoriesPage(props) {
                 <CardListComponent articles={articles}/>
             </Route>
             <Route path='/categories/article' exact>
-                <ArticleDetailComponent  />
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle} />
             </Route>
             <Route path='/categories/articles/article' exact>
-                <ArticleDetailComponent  />
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}  />
             </Route>
         </Fragment>
 )

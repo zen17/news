@@ -2,7 +2,7 @@ import {
     SELECTED_ARTICLE,
     LOAD_TOP_ARTICLES,
     LOAD_TOP_ARTICLES_BY_CATEGORY,
-    SELECTED_COUNTRY
+    SELECTED_COUNTRY, SELECTED_ARTICLES_CATEGORY
 } from "./news-actions-types";
 
 export const selectedArticleAction = (payload) => {
@@ -32,4 +32,12 @@ export const selectedCountryAction = (payload) => {
         payload: payload
     }
 }
+
+export const selectedArticlesCategoryAction = (payload) => {
+    return {
+        type: SELECTED_ARTICLES_CATEGORY,
+        payload: payload
+    }
+}
+
 

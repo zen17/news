@@ -2,7 +2,7 @@ import React from 'react';
 import {connect, useDispatch} from "react-redux";
 import CategoryCarouselComponent from "../CategoryCarouselComponent/CategoryCarouselComponent";
 import {API_KEY} from "../../../config/constants";
-import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
+import {loadedTopArticlesAction, selectedArticlesCategoryAction} from "../../../redux/actions/news-actions";
 import {useHistory, useLocation} from "react-router-dom";
 
 function CategoryCarouselListComponent(props) {
@@ -16,6 +16,7 @@ function CategoryCarouselListComponent(props) {
             .then(data => data.json())
             .then(data => {
                 dispatch(loadedTopArticlesAction(data.articles));
+                dispatch(selectedArticlesCategoryAction(categoryName));
                 history.push(`${location.pathname}/articles`)
             });
     }
@@ -37,9 +38,5 @@ function CategoryCarouselListComponent(props) {
     )
 }
 
-function mapStateToProps(state,) {
-    const categoryArticles = state.categoryArticles
-    return {categoryArticles: categoryArticles}
-}
 
-export default connect(mapStateToProps, null)(CategoryCarouselListComponent);
+export  default  CategoryCarouselListComponent;

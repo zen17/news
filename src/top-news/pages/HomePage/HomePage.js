@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import CardListComponent
     from "../../../common/components/CardListComponent/CardListComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
 import {Route} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
-import {API_KEY} from "../../../config/constants";
+import {API_KEY, GB_COUNTRY} from "../../../config/constants";
 
 function HomePage(props) {
     console.log('HOMEPAGE PROPS',props)
@@ -24,15 +24,18 @@ function HomePage(props) {
             }).catch(e => console.log(e));
     }, [selectedCountry]);
 
+    const countryName = selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'
+
     return (
-        <div className="container-fluid">
+        <Fragment>
+            <h1> Top news from {countryName} </h1>
             <Route path='/' exact>
                 <CardListComponent articles={articles}/>
             </Route>
             <Route path='/article' exact>
                 <ArticleDetailComponent  />
             </Route>
-        </div>
+        </Fragment>
     )
 }
 

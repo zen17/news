@@ -1,16 +1,16 @@
-import React from "react";
+import React, {Fragment} from "react";
 
 function RadioButtonsComponent(props) {
     const radioButtons = props.values?.map((rb, index) => {
         return (
-            <div>
+            <Fragment>
                 <label>{rb.option}</label>
                 <input checked={rb.value === props.selectedValue}
                        key={index}
                        type="radio"
                        value={rb.value}
                        name={props.name}/>
-            </div>
+            </Fragment>
         )
     })
 

@@ -3,9 +3,9 @@ import HorizontalNavBarComponent
     from "../../../common/components/HorizontalNarComponent/HorizontalNavBarComponent";
 import {Route, Switch} from 'react-router-dom'
 import HomePage from "../HomePage/HomePage";
-import TopNewsCategoriesPage from "../CategoriesPage/CateogriesPage";
 import SearchPage from "../SearchPage/SearchPage";
 import {useSelector} from "react-redux";
+import CategoriesPage from "../CategoriesPage/CateogriesPage";
 
 function LayoutPage(props) {
     const links = [{name: "Home", route: "/"},
@@ -13,16 +13,16 @@ function LayoutPage(props) {
         {name: "Search", route: "search"}];
 
     const selectedCountry = useSelector(state => state.selectedCountry);
-    return (
-        <div>
-            <HorizontalNavBarComponent selectedCountry={selectedCountry} links={links}/>
+    return (<div>
+        <HorizontalNavBarComponent selectedCountry={selectedCountry} links={links}/>
+        <div className='container-fluid'>
             <Switch>
-                <Route path="/categories" component={TopNewsCategoriesPage}/>
+                <Route path="/categories" component={CategoriesPage}/>
                 <Route path="/search" component={SearchPage}/>
-                <Route path="/"  component={HomePage}/>
+                <Route path="/" component={HomePage}/>
             </Switch>
         </div>
-    )
+    </div>)
 }
 
 export default LayoutPage

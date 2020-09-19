@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Fragment} from "react";
 import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
 import {useDispatch, connect, useSelector} from "react-redux";
-import {API_KEY} from "../../../config/constants";
+import {API_KEY, GB_COUNTRY} from "../../../config/constants";
 import {Route} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
@@ -14,11 +14,16 @@ function CategoriesPage(props) {
         {name: "Health", value: "health"},
         {name: "Science", value: "science"},
         {name: "Sport", value: "sport"},
-        {name: "Technology", value: "echtnology"}];
+        {name: "Technology", value: "technology"}];
+
+
 
     const articles = useSelector(state => state.articles);
     const selectedCountry = useSelector(state => state.selectedCountry);
+    const categoryArticles = useSelector(state => state.categoryArticles);
+    const selectedArticlesCategory = useSelector(state => state.selectedArticlesCategory);
     const dispatch = useDispatch();
+    const countryName = selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'
 
     useEffect(() => {
         categories.forEach(category => {
@@ -33,9 +38,10 @@ function CategoriesPage(props) {
 
 
     return (
-        <div className="container-fluid">
+        <Fragment>
+            <h1> Top  {selectedArticlesCategory} news by categories from {countryName} </h1>
             <Route path='/categories' exact>
-                <CategoryCarouselListComponent listOfCategories={categories}/>
+                <CategoryCarouselListComponent categoryArticles={categoryArticles} listOfCategories={categories}/>
             </Route>
             <Route path='/categories/articles' exact>
                 <CardListComponent articles={articles}/>
@@ -46,14 +52,9 @@ function CategoriesPage(props) {
             <Route path='/categories/articles/article' exact>
                 <ArticleDetailComponent  />
             </Route>
-        </div>
+        </Fragment>
 )
 }
 
 
-function mapStateToProps(state, ownProps) {
-    const categoryArticles = state.categoryArticles
-    return {categoryArticles: categoryArticles}
-}
-
-export default connect(mapStateToProps, null)(CategoriesPage);
+export default CategoriesPage

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import CardListComponent
     from "../../../common/components/CardListComponent/CardListComponent";
 import {API_KEY} from "../../../config/constants";
@@ -50,7 +50,7 @@ function SearchPage(props) {
     }
 
     return (
-        <div className="container-fluid">
+        <Fragment>
             <Route path='/search' exact>
                 <form>
                     <label>
@@ -63,7 +63,7 @@ function SearchPage(props) {
             <Route path='/search/article' exact>
                 <ArticleDetailComponent/>
             </Route>
-        </div>
+        </Fragment>
     )
 }
 

@@ -1,0 +1,20 @@
+.activeLink {
+  font-size: medium;
+  color: orange;
+  border-bottom: 2px red;
+}
+
+.countryRadioButtons {
+  display: inline;
+  text-decoration: none;
+}
+
+.countryRadioButtons li {
+  display: inline;
+  text-decoration: none;
+}
+
+.btn:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -41,3 +41,8 @@
   pointer-events: none;
   opacity: 50%;
 }
+
+input {
+  outline: none !important;
+  box-shadow: none !important;
+}

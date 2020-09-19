@@ -59,19 +59,12 @@ function SearchPage(props) {
     return (
         <Fragment>
             <Route path='/search' exact>
-                <div className='row justify-content-center mt-5' >
-                    <form>
-                        <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                            <div className="input-group">
-                                <input type="search" ref={searchInput} placeholder='Search news...'
-                                        className="form-control border-0 bg-light"/>
+                <div className='row justify-content-center m-3' >
 
-                            </div>
-                        </div>
-                        {/*<label>*/}
-                        {/*    <input className='form-control' ref={searchInput} placeholder='Search news...' type="text" name="search-bar"/>*/}
-                        {/*</label>*/}
-                    </form>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" ref={searchInput} placeholder='Search news...'
+                               aria-describedby="basic-addon1"/>
+                    </div>
                 </div>
                 <CardListComponent articles={articles}/>
             </Route>

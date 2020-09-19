@@ -3,13 +3,14 @@ import {Link, NavLink} from "react-router-dom";
 import RadioButtonsComponent from "../RadioButtonsComponent/RadioButtonsComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {selectedCountryAction} from "../../../redux/actions/news-actions";
+import './HorizontalNavBarComponent.scss'
 
 function HorizontalNavBarComponent(props) {
 
     const radioButtonsInit = [{value: 'GB', option: 'GB'}, {value: 'US', option: 'US'}]
 
-    const listItems = props.links.map(({name, route, index}) =>
-        <NavLink  className='nav-link' activeClassName="active"  key={index} to={route}>
+    const navLinkList = props.links.map(({name, route, index}) =>
+        <NavLink  className='nav-link' exact activeClassName="activeLink"  onlyActiveOnIndex  key={index} to={route}>
             {name}
         </NavLink>
     );
@@ -21,7 +22,7 @@ function HorizontalNavBarComponent(props) {
     }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className='btn btn-floating pink' to="/">
+            <Link className='btn btn-floating' to="/">
                 News
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -30,9 +31,9 @@ function HorizontalNavBarComponent(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
-                    {listItems}
+                    {navLinkList}
                 </ul>
-                <span className={disabledButtons}>
+                <span >
                          <RadioButtonsComponent
                              className={disabledButtons}
                              selectedValue={props.selectedCountry}

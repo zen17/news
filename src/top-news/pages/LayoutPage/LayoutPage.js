@@ -1,6 +1,6 @@
 import React from 'react';
 import HorizontalNavBarComponent
-    from "../../../common/components/HorizontalNarComponent/HorizontalNavBarComponent";
+    from "../../../common/components/HorizontalNavComponent/HorizontalNavBarComponent";
 import {Route, Switch} from 'react-router-dom'
 import HomePage from "../HomePage/HomePage";
 import SearchPage from "../SearchPage/SearchPage";

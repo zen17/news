@@ -1,10 +1,11 @@
-import React, {useEffect, useState, Fragment} from "react";
-import {loadedTopArticlesByCategoryAction} from "../../../redux/actions/news-actions";
-import {useDispatch, connect, useSelector} from "react-redux";
-import {API_KEY, GB_COUNTRY} from "../../../config/constants";
-import {Route, useHistory} from "react-router-dom";
+import React, {Fragment, useEffect} from "react";
+import {loadedTopArticlesByCategoryAction, selectedArticleAction} from "../../../redux/actions/news-actions";
+import {useDispatch, useSelector} from "react-redux";
+import {GB_COUNTRY} from "../../../config/constants";
+import {Route, useHistory, useLocation} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
-import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
+import CategoryCarouselListComponent
+    from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
 import {getTopArticlesByCountryAndCategory} from "../../services/articleService";
 
@@ -24,6 +25,7 @@ function CategoriesPage(props) {
     const dispatch = useDispatch();
     const countryName = selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'
     const history = useHistory()
+    const location = useLocation();
 
     const goBack = () => {
         history.goBack()
@@ -33,13 +35,18 @@ function CategoriesPage(props) {
         goBack();
     }
 
-    const heading = !selectedArticle ? <h1> Top news from {selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'} </h1> : <h1/>
+    const openArticleDetailView = (article) => {
+        dispatch(selectedArticleAction(article));
+        history.push(`${location.pathname}/article`)
+    }
 
+    const heading = !selectedArticle ?
+        <h1> Top {selectedArticlesCategory} news from {selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'} </h1> : <h1/>
 
     useEffect(() => {
         categories.forEach(category => {
-           // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&category=${category.value}&apiKey=${API_KEY}`)
-             getTopArticlesByCountryAndCategory(selectedCountry,category.value)
+            // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&category=${category.value}&apiKey=${API_KEY}`)
+            getTopArticlesByCountryAndCategory(selectedCountry, category.value)
                 .then(data => data.json())
                 .then(data => {
                     console.log('CATEGORY PAGE LOADED')
@@ -56,16 +63,16 @@ function CategoriesPage(props) {
                 <CategoryCarouselListComponent categoryArticles={categoryArticles} listOfCategories={categories}/>
             </Route>
             <Route path='/categories/articles' exact>
-                <CardListComponent articles={articles}/>
+                <CardListComponent onMoreBtnClick={openArticleDetailView} articles={articles}/>
             </Route>
             <Route path='/categories/article' exact>
-                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle} />
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}/>
             </Route>
             <Route path='/categories/articles/article' exact>
-                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}  />
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}/>
             </Route>
         </Fragment>
-)
+    )
 }
 
 

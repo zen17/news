@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
 import {useDispatch, useSelector} from "react-redux";
-import {loadedTopArticlesAction} from "../../../redux/actions/news-actions";
+import {loadedTopArticlesAction, selectedArticleAction} from "../../../redux/actions/news-actions";
 import {Route, useHistory} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {API_KEY, GB_COUNTRY} from "../../../config/constants";
@@ -20,6 +20,11 @@ function HomePage(props) {
 
     const closeArticleDetailComponent = () => {
         goBack();
+    }
+
+    const openArticleDetailView = (article) => {
+        dispatch(selectedArticleAction(article));
+        history.push('/article')
     }
 
     useEffect(() => {
@@ -41,7 +46,7 @@ function HomePage(props) {
         <Fragment>
             <Route path='/' exact>
                 {heading}
-                <CardListComponent articles={articles}/>
+                <CardListComponent onMoreBtnClick={openArticleDetailView} articles={articles}/>
             </Route>
             <Route path='/article' exact>
                 <ArticleDetailComponent selectedArticle={selectedArticle} onBackBtnClick={closeArticleDetailComponent}/>

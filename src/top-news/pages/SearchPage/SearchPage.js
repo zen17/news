@@ -1,11 +1,12 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
-import {Route, useHistory} from "react-router-dom";
+import {Route, useHistory, useLocation} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getTopArticlesByCountryAndQuery} from "../../services/articleService";
+import {selectedArticleAction} from "../../../redux/actions/news-actions";
 
 function SearchPage(props) {
 
@@ -16,6 +17,8 @@ function SearchPage(props) {
     const searchInput = React.useRef(null);
     const selectedCountry = useSelector(state => state.selectedCountry);
     const selectedArticle = useSelector(state => state.selectedArticle);
+    const dispatch = useDispatch();
+    const location = useLocation();
 
     const initialSubject = () => {
         return fromEvent(searchInput.current, 'input')
@@ -32,12 +35,17 @@ function SearchPage(props) {
         history.goBack()
     }
 
+    const openArticleDetailView = (article) => {
+        dispatch(selectedArticleAction(article));
+        history.push(`${location.pathname}/article`)
+    }
+
     const handleChangeInput = (inputValue) => {
         setQuery(inputValue)
     }
 
     const closeArticleDetailComponent = () => {
-       // goBack();
+        goBack();
     }
 
     useEffect(() => {
@@ -67,7 +75,7 @@ function SearchPage(props) {
                                aria-describedby="basic-addon1"/>
                     </div>
                 </div>
-                <CardListComponent articles={articles}/>
+                <CardListComponent onMoreBtnClick={openArticleDetailView} articles={articles}/>
             </Route>
             <Route path='/search/article' exact>
                 <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}/>

@@ -15,11 +15,11 @@ const CardListComponent = ({
 
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (articles.length === 0) {
-  //     history.push('/');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (articles.length === 0) {
+      history.push('/');
+    }
+  }, []);
 
   const cardList = articles.map((article, index) => (
     <div key={index} className="col-md-4 col-lg-3 mt-4">

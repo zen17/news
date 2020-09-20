@@ -49,8 +49,7 @@ function CategoriesPage(props) {
   const heading = !selectedArticle ? (
     <h1>
       {' '}
-      Top {selectedArticlesCategory} news from {countryName}
-{' '}
+      Top {selectedArticlesCategory} news from {countryName}{' '}
     </h1>
   ) : (
     <h1 />

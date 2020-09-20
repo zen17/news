@@ -25,9 +25,9 @@ const ArticleDetailComponent = ({ selectedArticle, onBackBtnClick }) => {
 
   return (
     <div>
-      <btn className="nav-link" onClick={handleClickOnBackBtn}>
+      <button className="nav-link" onClick={handleClickOnBackBtn}>
         Back
-      </btn>
+      </button>
       <h2>{article.title}</h2>
       <img src={article.urlToImage} className="card-img-top" alt="..." />
       <p className="card-text">{article.content}</p>

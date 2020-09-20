@@ -18,9 +18,9 @@ const CardComponent = ({ article, onMoreBtnClick, showHoverAnimation }) => {
       <div className="card-body">
         <h5 className="card-title">{article.title}</h5>
         <p className="card-text overflow-hidden">{article.description}</p>
-        <btn className="btn btn-primary" onClick={handleClickOnMoreBtn}>
+        <button className="btn btn-primary" onClick={handleClickOnMoreBtn}>
           More
-        </btn>
+        </button>
       </div>
     </div>
   );

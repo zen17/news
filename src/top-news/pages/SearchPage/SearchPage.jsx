@@ -7,9 +7,9 @@ import ArticleDetailComponent from '../../../common/components/ArticleDetailComp
 import CardListComponent from '../../../common/components/CardListComponent/CardListComponent';
 import { getTopArticlesByCountryAndQuery } from '../../services/articleService';
 import { selectedArticleAction } from '../../../redux/actions/news-actions';
+import { API_KEY } from '../../../config/constants';
 
 function SearchPage(props) {
-  const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState('');
   const history = useHistory();
@@ -22,16 +22,6 @@ function SearchPage(props) {
   const handleChangeInput = (inputValue) => {
     setQuery(inputValue);
   };
-
-  if (searchInput.current) {
-    const $searchInput = fromEvent(searchInput.current, 'input')
-      .pipe(
-        map((event) => event.target.value),
-        debounceTime(500),
-        distinctUntilChanged()
-      )
-      .subscribe((inputValue) => handleChangeInput(inputValue));
-  }
 
   const goBack = () => {
     history.goBack();
@@ -48,13 +38,21 @@ function SearchPage(props) {
   };
 
   useEffect(() => {
-    setLoading(true);
+    if (searchInput.current) {
+      fromEvent(searchInput.current, 'input')
+        .pipe(
+          map((event) => event.target.value),
+          debounceTime(500),
+          distinctUntilChanged()
+        )
+        .subscribe((inputValue) => handleChangeInput(inputValue));
+    }
     if (query !== '') {
+      // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&q=${query}&apiKey=${API_KEY}`)
       getTopArticlesByCountryAndQuery(selectedCountry, query)
         .then((data) => data.json())
         .then((data) => {
           setArticles(data.articles);
-          setLoading(false);
         })
         .catch((e) => {
           setArticles([selectedCountry]);
@@ -62,7 +60,7 @@ function SearchPage(props) {
     }
 
     return () => {
-    //  $searchInput.unsubscribe();
+      //  $searchInput.unsubscribe();
     };
   }, [query, selectedCountry]);
 

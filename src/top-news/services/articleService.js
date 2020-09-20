@@ -14,6 +14,6 @@ export function getTopArticlesByCountryAndCategory(country, category) {
 
 export function getTopArticlesByCountryAndQuery(country, query) {
   return fetch(
-    `https://nwsapi.org/v2/top-headlines?country=${country}&q=${query}&apiKey=${API_KEY}`
+    `https://newsapi.org/v2/top-headlines?country=${country}&q=${query}&apiKey=${API_KEY}`
   );
 }

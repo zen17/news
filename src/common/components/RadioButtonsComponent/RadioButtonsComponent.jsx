@@ -15,7 +15,7 @@ function RadioButtonsComponent({
           <label htmlFor={`rb-${index}`}>{rb.option}</label>
           <input
             id={`rb-${index}`}
-            checked={rb.value === selectedValue}
+            defaultChecked={rb.value === selectedValue}
             key={index}
             type="radio"
             value={rb.value}

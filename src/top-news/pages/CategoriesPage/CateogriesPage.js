@@ -6,6 +6,7 @@ import {Route, useHistory} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import CategoryCarouselListComponent from "../../components/CategoryCarouselListComponent/CategoryCarouselListComponent";
 import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
+import {getTopArticlesByCountryAndCategory} from "../../services/articleService";
 
 function CategoriesPage(props) {
 
@@ -32,9 +33,13 @@ function CategoriesPage(props) {
         goBack();
     }
 
+    const heading = !selectedArticle ? <h1> Top news from {selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'} </h1> : <h1/>
+
+
     useEffect(() => {
         categories.forEach(category => {
-            fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&category=${category.value}&apiKey=${API_KEY}`)
+           // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&category=${category.value}&apiKey=${API_KEY}`)
+             getTopArticlesByCountryAndCategory(selectedCountry,category.value)
                 .then(data => data.json())
                 .then(data => {
                     console.log('CATEGORY PAGE LOADED')
@@ -46,7 +51,7 @@ function CategoriesPage(props) {
 
     return (
         <Fragment>
-            <h1> Top  {selectedArticlesCategory} news by categories from {countryName} </h1>
+            {heading}
             <Route path='/categories' exact>
                 <CategoryCarouselListComponent categoryArticles={categoryArticles} listOfCategories={categories}/>
             </Route>

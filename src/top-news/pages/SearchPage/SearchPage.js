@@ -1,12 +1,11 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import CardListComponent
-    from "../../../common/components/CardListComponent/CardListComponent";
-import {API_KEY} from "../../../config/constants";
+import React, {Fragment, useEffect, useState} from 'react';
+import CardListComponent from "../../../common/components/CardListComponent/CardListComponent";
 import {Route, useHistory} from "react-router-dom";
 import ArticleDetailComponent from "../../../common/components/ArticleDetailComponent/ArticleDetailComponent";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {useSelector} from "react-redux";
+import {getTopArticlesByCountryAndQuery} from "../../services/articleService";
 
 function SearchPage(props) {
 
@@ -38,28 +37,30 @@ function SearchPage(props) {
     }
 
     const closeArticleDetailComponent = () => {
-        goBack();
+       // goBack();
     }
+
     useEffect(() => {
         setLoading(true)
         initialSubject();
         if (query !== '')
-        fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&q=${query}&apiKey=${API_KEY}`)
-            .then(data => data.json())
-            .then(data => {
-                console.log('SEARCH PAGE LOADED', data)
-                setArticles(data.articles)
-                setLoading(false);
-            }).catch(e => {
-            setArticles([selectedCountry])
-        })
+            // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&q=${query}&apiKey=${API_KEY}`)
+            getTopArticlesByCountryAndQuery(selectedCountry, query)
+                .then(data => data.json())
+                .then(data => {
+                    console.log('SEARCH PAGE LOADED', data)
+                    setArticles(data.articles)
+                    setLoading(false);
+                }).catch(e => {
+                setArticles([selectedCountry])
+            })
 
-    }, [query,selectedCountry]);
+    }, [query, selectedCountry]);
 
     return (
         <Fragment>
             <Route path='/search' exact>
-                <div className='row justify-content-center m-3' >
+                <div className='row justify-content-center m-3'>
 
                     <div className="input-group mb-3">
                         <input type="text" className="form-control" ref={searchInput} placeholder='Search news...'
@@ -69,7 +70,7 @@ function SearchPage(props) {
                 <CardListComponent articles={articles}/>
             </Route>
             <Route path='/search/article' exact>
-                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle} />
+                <ArticleDetailComponent onBackBtnClick={closeArticleDetailComponent} selectedArticle={selectedArticle}/>
             </Route>
         </Fragment>
     )

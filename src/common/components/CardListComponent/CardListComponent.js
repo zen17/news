@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import CardComponent from "../CardComponent/CardComponent";
 import "./CardListComponent.scss"
 import {useHistory, useLocation} from "react-router-dom";
@@ -17,14 +17,27 @@ const CardListComponent = (props) => {
         else
             history.push(`${location.pathname}/article`)
     }
+
+    const goBack = () => {
+      //  history.goBack()
+    }
+
+
+    useEffect(() => {
+        if(props.articles.length === 0){
+            goBack();
+        }
+    }, []);
+
+    const articles = props.articles?.map((article, index) => (
+        <div key={index} className="col-md-4 col-lg-3 mt-4">
+            <CardComponent onMoreBtnClick={openArticleDetailView} showHoverAnimation={true} article={article}/>
+        </div>
+    ))
     return (
-            <div className="row justify-content-center">
-                {props.articles?.map((article, index) => (
-                    <div key={index} className="col-md-4 col-lg-3 mt-4">
-                        <CardComponent onMoreBtnClick={openArticleDetailView} showHoverAnimation={true} article={article}/>
-                    </div>
-                ))}
-            </div>
+        <div className="row justify-content-center">
+            {articles}
+        </div>
     );
 }
 export default CardListComponent;

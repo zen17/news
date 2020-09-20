@@ -10,7 +10,7 @@ function LayoutPage(props) {
   const links = [
     { name: 'Home', route: '/' },
     { name: 'Categories', route: 'categories' },
-    { name: 'Search', route: 'search' },
+    // { name: 'Search', route: 'search' },
   ];
 
   const selectedCountry = useSelector((state) => state.selectedCountry);
@@ -22,8 +22,8 @@ function LayoutPage(props) {
       />
       <div className="container-fluid">
         <Switch>
-          <Route path="/categories" component={CategoriesPage} />
           <Route path="/search" component={SearchPage} />
+          <Route path="/categories" component={CategoriesPage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </div>

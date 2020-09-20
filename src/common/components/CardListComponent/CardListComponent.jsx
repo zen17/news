@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CardComponent from '../CardComponent/CardComponent';
 import './CardListComponent.scss';
 
-const CardListComponent = ({ articles, onMoreBtnClick, showHoverAnimation,}) => {
-
-
+const CardListComponent = ({
+  articles,
+  onMoreBtnClick,
+  showHoverAnimation,
+}) => {
   const handleOnMoreBtnClick = (article) => {
     onMoreBtnClick(article);
   };
+
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   if (articles.length === 0) {
+  //     history.push('/');
+  //   }
+  // }, []);
 
   const cardList = articles.map((article, index) => (
     <div key={index} className="col-md-4 col-lg-3 mt-4">
@@ -32,7 +43,6 @@ CardListComponent.defaultProps = {
   article: [],
   onMoreBtnClick: () => {},
   showHoverAnimation: true,
-}
-
+};
 
 export default CardListComponent;

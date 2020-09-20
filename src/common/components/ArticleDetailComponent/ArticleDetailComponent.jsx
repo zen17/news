@@ -14,7 +14,7 @@ const ArticleDetailComponent = ({ selectedArticle, onBackBtnClick }) => {
 
   useEffect(() => {
     if (!selectedArticle) {
-      history.goBack();
+      history.push('/');
     }
     return () => {
       dispatch(selectedArticleAction(null));

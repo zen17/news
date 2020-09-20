@@ -24,6 +24,7 @@ function HorizontalNavBarComponent({ links, selectedCountry }) {
       {name}
     </NavLink>
   ));
+
   const dispatch = useDispatch();
   const selectedArticle = useSelector((state) => state.selectedArticle);
   const disabledButtons = selectedArticle
@@ -34,9 +35,6 @@ function HorizontalNavBarComponent({ links, selectedCountry }) {
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="btn btn-floating" to="/">
-        News
-      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -49,7 +47,18 @@ function HorizontalNavBarComponent({ links, selectedCountry }) {
         <span className="navbar-toggler-icon" />
       </button>
       <div className="collapse navbar-collapse" id="navbarText">
-        <ul className="navbar-nav mr-auto">{navLinkList}</ul>
+        <ul className="navbar-nav mr-auto">
+          {navLinkList}
+          <Link
+            className="nav-link"
+            exact
+            activeClassName="activeLink"
+            onlyActiveOnIndex
+            to="/search"
+          >
+            Search
+          </Link>
+        </ul>
         <span>
           <RadioButtonsComponent
             customClass={disabledButtons}

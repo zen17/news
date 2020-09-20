@@ -54,7 +54,7 @@ function HomePage(props) {
 
   return (
     <>
-      <Route path="/" exact>
+      <Route exact path="/">
         {heading}
         <CardListComponent
           onMoreBtnClick={openArticleDetailView}

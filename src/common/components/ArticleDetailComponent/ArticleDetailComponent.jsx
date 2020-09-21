@@ -26,7 +26,7 @@ const ArticleDetailComponent = ({ selectedArticle, onBackBtnClick }) => {
 
   return (
     <div>
-      <button className="btn" onClick={handleClickOnBackBtn}>
+      <button className="btn btn-secondary" onClick={handleClickOnBackBtn}>
         Back
       </button>
       <h2>{article.title}</h2>

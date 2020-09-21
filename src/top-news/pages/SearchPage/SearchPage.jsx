@@ -7,7 +7,7 @@ import ArticleDetailComponent from '../../../common/components/ArticleDetailComp
 import CardListComponent from '../../../common/components/CardListComponent/CardListComponent';
 import { getTopArticlesByCountryAndQuery } from '../../services/articleService';
 import { selectedArticleAction } from '../../../redux/actions/news-actions';
-import { API_KEY } from '../../../config/constants';
+import './SearchPage.scss';
 
 function SearchPage(props) {
   const [articles, setArticles] = useState([]);
@@ -48,7 +48,6 @@ function SearchPage(props) {
         .subscribe((inputValue) => handleChangeInput(inputValue));
     }
     if (query !== '') {
-      // fetch(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&q=${query}&apiKey=${API_KEY}`)
       getTopArticlesByCountryAndQuery(selectedCountry, query)
         .then((data) => data.json())
         .then((data) => {
@@ -68,10 +67,10 @@ function SearchPage(props) {
     <>
       <Route path="/search" exact>
         <div className="row justify-content-center m-3">
-          <div className="input-group mb-3">
+          <div className="input-group mb- search-box">
             <input
               type="text"
-              className="form-control"
+              className="form-control search-box"
               ref={searchInput}
               placeholder="Search news..."
               aria-describedby="basic-addon1"

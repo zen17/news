@@ -9,7 +9,7 @@ import CategoriesPage from '../CategoriesPage/CateogriesPage';
 function LayoutPage(props) {
   const links = [
     { name: 'Home', route: '/' },
-    { name: 'Categories', route: 'categories' },
+  //  { name: 'Categories', route: 'categories' },
     // { name: 'Search', route: 'search' },
   ];
 

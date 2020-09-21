@@ -49,7 +49,8 @@ function CategoriesPage(props) {
   const heading = !selectedArticle ? (
     <h1>
       {' '}
-      Top {selectedArticlesCategory} news from {countryName}{' '}
+      Top {selectedArticlesCategory} news from {countryName}
+{' '}
     </h1>
   ) : (
     <h1 />
@@ -73,12 +74,6 @@ function CategoriesPage(props) {
   return (
     <>
       {heading}
-      <Route path="/categories" exact>
-        <CategoryCarouselListComponent
-          categoryArticles={categoryArticles}
-          listOfCategories={categories}
-        />
-      </Route>
       <Route path="/categories/articles" exact>
         <CardListComponent
           onMoreBtnClick={openArticleDetailView}
@@ -95,6 +90,12 @@ function CategoriesPage(props) {
         <ArticleDetailComponent
           onBackBtnClick={closeArticleDetailComponent}
           selectedArticle={selectedArticle}
+        />
+      </Route>
+      <Route path="/categories" exact>
+        <CategoryCarouselListComponent
+          categoryArticles={categoryArticles}
+          listOfCategories={categories}
         />
       </Route>
     </>

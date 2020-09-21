@@ -46,7 +46,8 @@ function HomePage(props) {
     <h1>
       {' '}
       Top news from
-      {selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'}{' '}
+      {selectedCountry === GB_COUNTRY ? 'Great Britain' : 'USA'}
+{' '}
     </h1>
   ) : (
     <h1 />

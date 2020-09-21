@@ -1,8 +1,7 @@
 .clickableHeader {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
-.clickableHeader:hover{
-  border-bottom: 2px cyan;
-  cursor: pointer;
+.clickableHeader:hover {
+  color: cadetblue !important;
 }

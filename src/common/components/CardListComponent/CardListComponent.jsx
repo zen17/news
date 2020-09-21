@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import CardComponent from '../CardComponent/CardComponent';
 import './CardListComponent.scss';
 
@@ -13,12 +11,6 @@ const CardListComponent = ({
   const handleOnMoreBtnClick = (article) => {
     onMoreBtnClick(article);
   };
-
-  const selectedArticlesCategory = useSelector(
-    (store) => store.selectedArticlesCategory
-  );
-  const history = useHistory();
-
 
   const cardList = articles.map((article, index) => (
     <div key={index} className="col-md-4 col-lg-3 mt-4">

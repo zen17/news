@@ -15,7 +15,6 @@ function HorizontalNavBarComponent({ links, selectedCountry }) {
   const navLinkList = links.map(({ name, route, index }) => (
     <NavLink
       className="nav-link"
-      exact
       activeClassName="activeLink"
       onlyActiveOnIndex
       key={index}
@@ -49,9 +48,17 @@ function HorizontalNavBarComponent({ links, selectedCountry }) {
       <div className="collapse navbar-collapse" id="navbarText">
         <ul className="navbar-nav mr-auto">
           {navLinkList}
+          {/* TODO: fix problem with NavLinks when they are created with for loop */}
           <Link
             className="nav-link"
-            exact
+            activeClassName="activeLink"
+            onlyActiveOnIndex
+            to="/categories"
+          >
+            Categories
+          </Link>
+          <Link
+            className="nav-link"
             activeClassName="activeLink"
             onlyActiveOnIndex
             to="/search"

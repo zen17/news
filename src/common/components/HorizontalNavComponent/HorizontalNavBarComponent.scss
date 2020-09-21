@@ -1,15 +1,14 @@
 .activeLink {
-  font-size: medium;
-  color: orange;
-  border-bottom: 2px red;
+
 }
 
-.countryRadioButtons {
+
+.countryRadioButtons li  {
   display: inline;
   text-decoration: none;
 }
 
-.countryRadioButtons li {
+.countryRadioButtons ul li label {
   display: inline;
   text-decoration: none;
 }
@@ -18,3 +17,4 @@
   outline: none !important;
   box-shadow: none !important;
 }
+

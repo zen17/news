@@ -13,6 +13,7 @@ const ArticleDetailComponent = ({ selectedArticle, onBackBtnClick }) => {
   };
 
   useEffect(() => {
+    {/* TODO: find better solution */}
     if (!selectedArticle) {
       history.push('/');
     }
@@ -25,7 +26,7 @@ const ArticleDetailComponent = ({ selectedArticle, onBackBtnClick }) => {
 
   return (
     <div>
-      <button className="nav-link" onClick={handleClickOnBackBtn}>
+      <button className="btn" onClick={handleClickOnBackBtn}>
         Back
       </button>
       <h2>{article.title}</h2>

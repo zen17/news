@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import CategoryCarouselComponent from '../CategoryCarouselComponent/CategoryCarouselComponent';
+import './CategoryCarousleListComponent.scss';
 import {
   loadedTopArticlesAction,
   selectedArticlesCategoryAction,
@@ -37,13 +38,11 @@ function CategoryCarouselListComponent({ listOfCategories, categoryArticles }) {
       return (
         <div>
           <div className="row m-4">
-            <h3 className="mt-3 mb-2 clickableHeader">
-              <btn
-                className="clickableHeader"
-                onClick={() => handleClickOnCategory(category.name)}
-              >
-                {category.name}
-              </btn>
+            <h3
+              className="mt-3 mb-2 clickableHeader"
+              onClick={() => handleClickOnCategory(category.name)}
+            >
+              {category.name}
             </h3>
           </div>
           <CategoryCarouselComponent

@@ -1,8 +1,12 @@
 .search-box {
-  width: 50%;
+  width: 70% !important;
 }
 
-.search-box::placeholder {
+.search-logo {
+  width: 80% !important;
+}
+
+.search-box-input::placeholder {
   font-size: 0.95rem;
   color: #aaa;
   font-style: italic;

@@ -66,11 +66,16 @@ function SearchPage(props) {
   return (
     <>
       <Route path="/search" exact>
+        <div className="row justify-content-center mt-5">
+          {' '}
+          <h1 className='font-weight-bold'>News</h1>
+          {' '}
+        </div>
         <div className="row justify-content-center m-3">
-          <div className="input-group mb- search-box">
+          <div className="search-box input-group">
             <input
               type="text"
-              className="form-control search-box"
+              className="form-control"
               ref={searchInput}
               placeholder="Search news..."
               aria-describedby="basic-addon1"
